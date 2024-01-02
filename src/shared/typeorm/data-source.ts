@@ -9,7 +9,9 @@ const AppDataSource = new DataSource({
   password: 'root',
   database: 'api_db',
   synchronize: true,
-  entities: ['src/modules/**/typeorm/entities/*{.ts,.js}'],
+  entities: [
+    path.join(__dirname, '../../modules/**/typeorm/entities/*{.ts,.js}'),
+  ],
   migrations: [path.join(__dirname, '/migrations/*{.ts,.js}')],
 });
 
