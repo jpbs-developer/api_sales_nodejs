@@ -30,6 +30,7 @@ class ProductController {
   async update(req: Request, res: Response) {
     const service = new UpdateProductService();
     const { id } = req.params;
+
     await service.execute(req.body, id);
     return res.status(200).json({ message: 'Product updated successfully ' });
   }

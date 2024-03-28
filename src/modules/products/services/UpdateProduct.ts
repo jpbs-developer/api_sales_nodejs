@@ -9,6 +9,7 @@ export default class UpdateProductService {
     id: string,
   ): Promise<ProductEntity> {
     const product = await productRespository.findOne({ where: { id } });
+
     if (!product) throw new AppError('Product not found');
     const productExists = await productRespository.findByName(name);
 
