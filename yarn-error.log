@@ -1,5 +1,5 @@
 Arguments: 
-  /home/jpbs/.nvm/versions/node/v18.18.2/bin/node /home/jpbs/.nvm/versions/node/v18.18.2/bin/yarn migration:run
+  /home/jpbs/.nvm/versions/node/v18.18.2/bin/node /home/jpbs/.nvm/versions/node/v18.18.2/bin/yarn add bycriptjs
 
 PATH: 
   /home/jpbs/.nvm/versions/node/v18.18.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
@@ -14,12 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/jpbs/www/Portfolio/api_store_nodejs/package.json: Unexpected token } in JSON at position 596
-      at JSON.parse (<anonymous>)
-      at /home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:1629:59
-      at Generator.next (<anonymous>)
-      at step (/home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/bycriptjs: Not found
+      at params.callback [as _callback] (/home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:517:28)
+      at Request.<anonymous> (/home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:517:28)
+      at IncomingMessage.<anonymous> (/home/jpbs/.nvm/versions/node/v18.18.2/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:631:28)
+      at IncomingMessage.emit (node:events:529:35)
+      at endReadableNT (node:internal/streams/readable:1368:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {
@@ -33,8 +38,9 @@ npm manifest:
       "lint": "eslint . --ext .ts",
       "lint-fix": "eslint . --ext .ts --fix",
       "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
-      "migration:run": "yarn typeorm -d ./src/database/index.ts migration:run",
-      "migration:revert": "yarn typeorm -d ./src/database/index.ts migration:revert",
+      "migration:run": "yarn typeorm -d ./src/shared/typeorm/data-source.ts migration:run",
+      "migration:revert": "yarn typeorm -d ./src/shared/typeorm/data-source.ts migration:revert",
+      "migration:create": "yarn typeorm migration:create"
     },
     "keywords": [],
     "author": "",
@@ -60,7 +66,8 @@ npm manifest:
       "express-async-errors": "^3.1.1",
       "pg": "^8.11.3",
       "reflect-metadata": "^0.2.1",
-      "typeorm": "^0.3.17"
+      "typeorm": "^0.3.17",
+      "zod": "^3.22.4"
     }
   }
 
@@ -2227,3 +2234,8 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
     integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+  
+  zod@^3.22.4:
+    version "3.22.4"
+    resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
+    integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
