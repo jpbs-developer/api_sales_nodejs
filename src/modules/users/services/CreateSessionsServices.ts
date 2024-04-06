@@ -3,6 +3,7 @@ import { UserDTO } from '../dtos/UserDTO';
 import UserEntity from '../typeorm/entities/User';
 import { usersRespository } from '../typeorm/repositories/UserRepository';
 import { compare } from 'bcryptjs';
+import { jwtSign } from '@config/auth';
 
 type IResponse = {
   user: UserEntity;
@@ -17,6 +18,14 @@ export default class CreateSessionsService {
 
     const matchPassword = await compare(password, user.password);
     if (!matchPassword) throw new AppError('Invalid email or password!');
-    return { user, token: '' };
+    const payloadToken = {
+      email: user.email,
+      userName: user.name,
+      userId: user.id,
+    };
+
+    const token = jwtSign(payloadToken, { subject: user.id, expiresIn: '1d' });
+
+    return { user, token };
   }
 }
